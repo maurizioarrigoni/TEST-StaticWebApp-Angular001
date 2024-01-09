@@ -1,23 +1,52 @@
+{
+  "routes": [
+    {
+      "route": "/*",
+      "allowedRoles": ["authenticated"]
+    }
+  ],
+  "auth": {
+    "identityProviders": {
+      "azureActiveDirectory": {
+        "userDetailsClaim": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name",
+        "registration": {
+          "openIdIssuer": "https://login.microsoftonline.com/430f1f9c-adc6-435f-aa3a-d756ef94794d",
+          "clientIdSettingName": "e42dbdbe-ae81-4f3f-a2a8-21b2c44c7d6e",
+          "clientSecretSettingName": "aUd8Q~KCOkWhMwidtuSP0pUVRpf~3xzG2aZXBdqT"
+        }
+      }
+    }
+  },
+  "responseOverrides": {
+    "401": {
+      "statusCode": 302,
+      "redirect": "/.auth/login/aad"
+    }
+  },
+  "navigationFallback": {
+    "rewrite": "/index.html",
+    "exclude": ["/images/*.{png,jpg,gif}", "/css/*"]
+  },
+  "globalHeaders": {
+    "Cache-Control": "no-cache"
+  }
+}
 // {
 //     "navigationFallback": {
 //         "rewrite": "/index.html"
 //     }
 // }
-{
-    "routes": [
-      {
-        "route": "/logged_id.html",
-        "allowedRoles": ["authenticated"]
-        // "allowedRoles": ["anonymous"]
-      },{
-        "route": "/*",
-        "allowedRoles": ["authenticated"]
-      }
-    ],
-    "responseOverrides": {
-      "401": {
-        "statusCode": 302,
-        "redirect": "/.auth/login/aad"
-      }
-    }
-  }
+// {
+//     "routes": [
+//       {
+//         "route": "/*",
+//         "allowedRoles": ["authenticated"]
+//       }
+//     ],
+//     "responseOverrides": {
+//       "401": {
+//         "statusCode": 302,
+//         "redirect": "/.auth/login/aad"
+//       }
+//     }
+//   }
