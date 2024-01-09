@@ -6,6 +6,10 @@
 {
     "routes": [
       {
+        "route": "/logged_id.html",
+        "allowedRoles": ["authenticated"]
+        // "allowedRoles": ["anonymous"]
+      },{
         "route": "/*",
         "allowedRoles": ["authenticated"]
       }
